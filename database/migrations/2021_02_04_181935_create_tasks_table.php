@@ -17,8 +17,8 @@ class CreateTasksTable extends Migration
 
             $table->id();
 
-            $table->string('title', 100);
-            $table->text('description');
+            $table->string('title', 100) -> unique();
+            $table->text('desc');
             $table->tinyInteger('priority') -> unsigned();
 
             //  1 employee is in charge of N tasks

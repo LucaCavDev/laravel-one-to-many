@@ -2,11 +2,15 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\Task;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(Task::class, function (Faker $faker) {
     return [
-        //
+        
+        'title' => $faker -> unique() -> word,
+        'desc' => $faker -> sentence,
+        'priority' => rand(1, 5),
+
     ];
 });

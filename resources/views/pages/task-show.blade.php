@@ -10,4 +10,20 @@
 
     <h2>Per ogni task c'è 1 employee</h2>
 
+    <h2>TYPOLOGIES</h2>
+
+    <ul>
+        @foreach ($task -> typologies as $typology)
+            <li>
+
+                
+                Name of the typology: {{ $typology -> name }}<br>
+                Description: {{ $typology -> desc }}
+
+            </li>
+            
+        @endforeach
+    </ul>
+
+
 @endsection

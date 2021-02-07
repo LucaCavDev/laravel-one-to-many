@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             TaskSeeder::class,
             LocationSeeder::class,
+            TypologySeeder::class,
+
 
         
         ]);

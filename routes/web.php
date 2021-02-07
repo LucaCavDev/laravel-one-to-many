@@ -24,6 +24,16 @@ Route::get('/loc/{id}', 'MainController@locShow')
     -> name('loc-show');
 
 
+//----------
+// mostra tutti gli elementi typology
+Route::get('/typs', 'MainController@typIndex')
+    -> name('typ-index');
+// mostra i dettagli di UNA typology
+Route::get('/typ/{id}', 'MainController@typShow')
+    -> name('typ-show');
+
+
+
 
 
 /*

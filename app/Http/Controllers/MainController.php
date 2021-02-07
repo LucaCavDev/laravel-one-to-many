@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Employee;
 use App\Task;
 use App\Location;
+use App\Typology;
+
 
 
 class MainController extends Controller
@@ -37,6 +39,16 @@ class MainController extends Controller
         $loc = Location::findOrFail($id);
         return view('pages.loc-show', compact('loc'));
     }
+//-----------
+    public function typIndex() {
+        $typs = Typology::all();
+        return view('pages.typ-index', compact('typs'));
+    }
+    public function typShow($id) {
+        $typ = Typology::findOrFail($id);
+        return view('pages.typ-show', compact('typ'));
+    }
+
 
 
 

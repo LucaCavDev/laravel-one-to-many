@@ -2,13 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-// mostra tutti gli elementi
+// mostra tutti gli elementi employee
 Route::get('/emps', 'MainController@empIndex')
     -> name('emp-index');
-
+    // mostra i dettagli di UN employee
 Route::get('/emp/{id}', 'MainController@empShow')
     -> name('emp-show');
 
+// mostra tutti gli elementi tasks
+Route::get('/tasks', 'MainController@taskIndex')
+    -> name('task-index');
+// mostra i dettagli di UN task
+Route::get('/task/{id}', 'MainController@taskShow')
+    -> name('task-show');
 
 
 

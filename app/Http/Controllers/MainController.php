@@ -20,6 +20,17 @@ class MainController extends Controller
         return view('pages.emp-show', compact('emp'));
     }
 
+    public function taskIndex() {
+        $tasks = Task::all();
+        return view('pages.task-index', compact('tasks'));
+    }
+
+    public function taskShow($id) {
+        $task = Task::findOrFail($id);
+        return view('pages.task-show', compact('task'));
+    }
+
+
 
 }
 

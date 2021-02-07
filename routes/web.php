@@ -16,6 +16,12 @@ Route::get('/tasks', 'MainController@taskIndex')
 Route::get('/task/{id}', 'MainController@taskShow')
     -> name('task-show');
 
+// mostra tutti gli elementi location
+Route::get('/locs', 'MainController@locIndex')
+    -> name('loc-index');
+// mostra i dettagli di UNA location
+Route::get('/loc/{id}', 'MainController@locShow')
+    -> name('loc-show');
 
 
 

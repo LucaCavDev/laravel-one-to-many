@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Employee;
 use App\Task;
+use App\Location;
 
 
 class MainController extends Controller
@@ -14,7 +15,6 @@ class MainController extends Controller
         $emps = Employee::all();
         return view('pages.emp-index', compact('emps'));
     }
-
     public function empShow($id) {
         $emp = Employee::findOrFail($id);
         return view('pages.emp-show', compact('emp'));
@@ -24,11 +24,21 @@ class MainController extends Controller
         $tasks = Task::all();
         return view('pages.task-index', compact('tasks'));
     }
-
     public function taskShow($id) {
         $task = Task::findOrFail($id);
         return view('pages.task-show', compact('task'));
     }
+
+    public function locIndex() {
+        $locs = Location::all();
+        return view('pages.loc-index', compact('locs'));
+    }
+    public function locShow($id) {
+        $loc = Location::findOrFail($id);
+        return view('pages.loc-show', compact('loc'));
+    }
+
+
 
 
 

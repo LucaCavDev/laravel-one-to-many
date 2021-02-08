@@ -118,7 +118,7 @@ class MainController extends Controller
 
 
     public function typEdit($id) {
-        $tasks = Typology::all();
+        $tasks = Task::all();
         $typ = Typology::findOrFail($id);
         return view('pages.typ-edit', 
             compact('typ', 'tasks')

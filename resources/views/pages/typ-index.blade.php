@@ -4,16 +4,28 @@
 
     <h1>TYPOLOGIES:</h1>
 
-    @foreach ($typs as $typ)
+    <a href="{{ route('typ-create')}}">
+        CREATE NEW TYPOLOGY
+    </a>
 
-        <a href="{{ route('typ-show', $typ -> id) }}">
+
+
+    <ul>
+
+        @foreach ($typs as $typ)
 
             <li>
-                {{ $typ -> name }}
+                <a href="{{ route('typ-show', $typ -> id) }}">
+                    {{ $typ -> name }}
+                </a>
+                <a href="">EDIT</a>
             </li>
-
-        </a>
+            {{-- {{ route('typ-edit', $typ -> id) }} --}}
         
-    @endforeach
+        @endforeach
+
+        
+    </ul>
+
     
 @endsection

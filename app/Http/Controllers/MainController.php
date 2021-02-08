@@ -98,6 +98,26 @@ class MainController extends Controller
     }
 
 
+    public function typCreate() {
+
+        $tasks = Task::all();
+
+        return view('pages.typ-create', compact('tasks'));
+    }
+
+    public function typStore(Request $request) {
+
+        $data = $request -> all();
+        
+        $typ = Typology::create($data);
+        $tasks = Task::findOrFail($data['tasks']);
+        $typ -> tasks() -> attach($tasks);
+        
+        return redirect() -> route('typ-show', $typ -> id);
+    }
+
+
+
 
 
 

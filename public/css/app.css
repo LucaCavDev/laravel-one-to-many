@@ -4,12 +4,13 @@
   box-sizing: border-box;
 }
 
-header {
-  margin-bottom: 50px;
-}
-
+header,
 footer {
-  margin-top: 50px;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 body {
@@ -22,5 +23,29 @@ body {
 
 body a {
   color: orange;
+  font-size: 20px;
+}
+
+.home {
+  border: purple solid 2px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+  font-family: "Roboto", sans-serif;
+  min-height: 50vh;
+}
+
+.home h1 {
+  margin: 50px;
+}
+
+.home a {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 20px;
 }
 

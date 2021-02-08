@@ -8,6 +8,9 @@
 
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <script src="{{ asset('/js/app.js') }}"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">

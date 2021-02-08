@@ -10,7 +10,13 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+}
+
+header i,
+footer i {
+  color: red;
+  padding: 10px;
+  font-size: 30px;
 }
 
 body {

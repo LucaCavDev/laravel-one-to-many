@@ -9,7 +9,12 @@ header, footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    i {
+        color: red;
+        padding: 10px;
+        font-size: 30px;
+    }
+
 
 }
 

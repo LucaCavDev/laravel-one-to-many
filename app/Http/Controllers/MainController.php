@@ -117,6 +117,29 @@ class MainController extends Controller
     }
 
 
+    public function typEdit($id) {
+        $tasks = Typology::all();
+        $typ = Typology::findOrFail($id);
+        return view('pages.typ-edit', 
+            compact('typ', 'tasks')
+        );
+    }
+    public function typUpdate(Request $request, $id) {
+        $data = $request -> all();
+        // dd($data);
+
+        $typ = Typology::findOrFail($id);
+        $typ -> update($data);
+        //$typ -> save();
+
+        $tasks = Task::findOrFail($data['tasks']);
+        $typ -> tasks() -> sync($tasks);
+
+        return redirect() -> route('typ-show', $typ -> id);
+    }
+
+
+
 
 
 

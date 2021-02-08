@@ -18,9 +18,8 @@
                 <a href="{{ route('typ-show', $typ -> id) }}">
                     {{ $typ -> name }}
                 </a>
-                <a href="">EDIT</a>
+                <a href="{{ route('typ-edit', $typ -> id) }}">EDIT</a>
             </li>
-            {{-- {{ route('typ-edit', $typ -> id) }} --}}
         
         @endforeach
 

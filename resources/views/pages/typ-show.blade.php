@@ -19,7 +19,12 @@
             <li>
                 <a href="{{ route('task-show', $task -> id) }}">
                     Title of the task: {{ $task -> title}}
-                </a>
+                </a> <br>
+
+                Name of the employee in charge of this task
+                {{$task -> employee -> name}}
+                {{$task -> employee -> name}}
+
 
                 
             </li>

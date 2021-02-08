@@ -21,6 +21,7 @@ class MainController extends Controller
         $emp = Employee::findOrFail($id);
         return view('pages.emp-show', compact('emp'));
     }
+//-----------
 
     public function taskIndex() {
         $tasks = Task::all();
@@ -30,6 +31,53 @@ class MainController extends Controller
         $task = Task::findOrFail($id);
         return view('pages.task-show', compact('task'));
     }
+
+    public function taskCreate() {
+
+        $emps = Employee::all();
+        $typs = Typology::all();
+        return view('pages.task-create', compact('emps', 'typs'));
+    }
+    public function taskStore(Request $request) {
+
+        $data = $request -> all();
+        
+        $emp = Employee::findOrFail($data['employee_id']);
+        $task = Task::make($request -> all());
+        $task -> employee() -> associate($emp);
+        $task -> save();
+        
+        $typs = Typology::findOrFail($data['typs']);
+        $task -> typologies() -> attach($typs);
+        return redirect() -> route('task-show', $task -> id);
+    }
+
+
+    public function taskEdit($id) {
+        $emps = Employee::all();
+        $typs = Typology::all();
+        $task = Task::findOrFail($id);
+        return view('pages.task-edit', 
+            compact('emps', 'typs', 'task')
+        );
+    }
+    public function taskUpdate(Request $request, $id) {
+        $data = $request -> all();
+        // dd($data);
+        $emp = Employee::findOrFail($data['employee_id']);
+        $task = Task::findOrFail($id);
+        $task -> update($data);
+        $task -> employee() -> associate($emp);
+        $task -> save();
+        $typs = Typology::findOrFail($data['typs']);
+        $task -> typologies() -> sync($typs);
+
+        return redirect() -> route('task-show', $task -> id);
+    }
+
+    
+
+//-----------
 
     public function locIndex() {
         $locs = Location::all();

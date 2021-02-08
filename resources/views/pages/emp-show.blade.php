@@ -21,6 +21,15 @@
                 </a>
                 Description: {{ $task -> desc }}
 
+                <ul>
+                    @foreach ($task -> typologies as $typ)
+                    <li>
+                        typology name: {{ $typ -> name}}
+                    </li>
+                        
+                    @endforeach
+                </ul>
+
             </li>
             
         @endforeach

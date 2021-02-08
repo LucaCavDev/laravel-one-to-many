@@ -27,6 +27,8 @@ class Task extends Model
         return $this -> belongsToMany(Typology::class);
     }
 
+    //riguardare ma pf locations per me non sta avendo ne effetto ne senso qua dentro
+
 
 
 

@@ -1,34 +1,52 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
-// mostra tutti gli elementi employee
+// EMPLOYEE
 Route::get('/emps', 'MainController@empIndex')
     -> name('emp-index');
-    // mostra i dettagli di UN employee
 Route::get('/emp/{id}', 'MainController@empShow')
     -> name('emp-show');
+//----------------------------
 
-// mostra tutti gli elementi tasks
+
+// TASK
 Route::get('/tasks', 'MainController@taskIndex')
     -> name('task-index');
-// mostra i dettagli di UN task
+
+
+Route::get('/task/create', 'MainController@taskCreate')
+    -> name('task-create');
+Route::post('/task/store', 'MainController@taskStore')
+    -> name('task-store');
+
+Route::get('/task/edit/{id}', 'MainController@taskEdit')
+    -> name('task-edit');
+Route::post('/task/update/{id}', 'MainController@taskUpdate')
+    -> name('task-update');
+
 Route::get('/task/{id}', 'MainController@taskShow')
     -> name('task-show');
 
-// mostra tutti gli elementi location
+
+
+//---------------------------------------
+
+
+// LOCATION
 Route::get('/locs', 'MainController@locIndex')
     -> name('loc-index');
-// mostra i dettagli di UNA location
+
 Route::get('/loc/{id}', 'MainController@locShow')
     -> name('loc-show');
-
-
 //----------
-// mostra tutti gli elementi typology
+
+
+// TYPOLOGY
 Route::get('/typs', 'MainController@typIndex')
     -> name('typ-index');
-// mostra i dettagli di UNA typology
+
 Route::get('/typ/{id}', 'MainController@typShow')
     -> name('typ-show');
 

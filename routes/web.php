@@ -9,6 +9,13 @@ Route::get('/', 'MainController@homeIndex')
 // EMPLOYEE
 Route::get('/emps', 'MainController@empIndex')
     -> name('emp-index');
+
+Route::get('/emp/create', 'MainController@empCreate')
+    -> name('emp-create');
+Route::post('/emp/store', 'MainController@empStore')
+    -> name('emp-store');
+
+
 Route::get('/emp/{id}', 'MainController@empShow')
     -> name('emp-show');
 //----------------------------

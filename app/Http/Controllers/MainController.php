@@ -28,6 +28,48 @@ class MainController extends Controller
         $emp = Employee::findOrFail($id);
         return view('pages.emp-show', compact('emp'));
     }
+/*
+    public function taskCreate() {
+
+        $emps = Employee::all();
+        $typs = Typology::all();
+        return view('pages.task-create', compact('emps', 'typs'));
+    }
+    public function taskStore(Request $request) {
+
+        $data = $request -> all();
+
+        Validator::make($data, [
+
+            'title' => 'required|min:3|max:100',
+            'title' => 'alpha',
+            'desc' => 'required|min:4|max:200',
+            'priority' => 'required|integer|between:1,5',
+
+
+        ]) -> validate();
+
+
+        
+        $emp = Employee::findOrFail($data['employee_id']);
+        $task = Task::make($request -> all());
+        $task -> employee() -> associate($emp);
+        $task -> save();
+
+        if (array_key_exists('typs', $data)) {
+            $typs = Typology::findOrFail($data['typs']);
+            $task -> typologies() -> attach($typs);
+        } else {
+            $task -> typologies() -> detach();
+
+        }
+
+        
+        //$typs = Typology::findOrFail($data['typs']);
+        //$task -> typologies() -> attach($typs);
+        return redirect() -> route('task-show', $task -> id);
+    }
+*/
 
     //---------------------------------------------------   
 
@@ -55,7 +97,7 @@ class MainController extends Controller
             'title' => 'required|min:3|max:100',
             'title' => 'alpha',
             'desc' => 'required|min:4|max:200',
-            'priority' => 'required|integer',
+            'priority' => 'required|integer|between:1,5',
 
 
         ]) -> validate();
@@ -98,7 +140,7 @@ class MainController extends Controller
             'title' => 'required|min:3|max:100',
             'title' => 'alpha',
             'desc' => 'required|min:4|max:200',
-            'priority' => 'required|integer',
+            'priority' => 'required|integer|between:1,5',
 
 
         ]) -> validate();

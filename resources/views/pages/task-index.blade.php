@@ -17,7 +17,7 @@
                     {{ $task -> title }}
                 </a>
                 <a href="{{ route('task-edit', $task -> id) }}">
-                    EDIT
+                    -------------EDIT
                 </a>
 
 

@@ -4,17 +4,24 @@
 
     <h1>EMPLOYEES:</h1>
 
+    <a href=" {{ route('emp-create') }} ">
+        CREATE NEW EMPLOYEE
+    </a>
+
+
     @foreach ($emps as $emp)
 
-        <a href="{{ route('emp-show', $emp -> id) }}">
-
-            <li>
+        <li>
+            <a href="{{ route('emp-show', $emp -> id) }}">
                 {{ $emp -> name }}
-                {{ $emp -> lastname }}
-            </li>
+            </a>
+            <a href="{{ route('emp-edit', $emp -> id) }}">
+                --------------EDIT
+            </a>
 
-        </a>
-        
+
+        </li>
+
     @endforeach
     
 @endsection

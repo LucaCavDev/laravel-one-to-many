@@ -15,6 +15,12 @@ Route::get('/emp/create', 'MainController@empCreate')
 Route::post('/emp/store', 'MainController@empStore')
     -> name('emp-store');
 
+Route::get('/emp/edit/{id}', 'MainController@empEdit')
+    -> name('emp-edit');
+Route::post('/emp/update/{id}', 'MainController@empUpdate')
+    -> name('emp-update');
+
+
 
 Route::get('/emp/{id}', 'MainController@empShow')
     -> name('emp-show');

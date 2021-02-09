@@ -1,8 +1,10 @@
 @extends('layouts.main-layout')
-
 @section('content')
+    <h1>
+        [{{ $emp -> id }}] 
+        EDIT EMPLOYEE
+    </h1>
 
-    <h1>NEW EMPLOYEE:</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -13,9 +15,10 @@
             </ul>
         </div>
     @endif
+    
 
-
-    <form action="{{ route('emp-store') }}" method="POST">
+    <form action="{{ route('emp-update', $emp -> id) }}" method="POST">
+        
         @csrf
         @method('POST')
 
@@ -31,16 +34,7 @@
         <input name="dateOfBirth" type="text">
         <br>
 
-        <input type="submit">
 
+        <input type="submit" value="salva"> 
     </form>
-
-{{--
-    'title',
-    'desc',
-    'priority', 
---}}
-
-
-    
 @endsection

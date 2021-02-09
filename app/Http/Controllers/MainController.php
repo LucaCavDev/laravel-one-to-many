@@ -28,48 +28,51 @@ class MainController extends Controller
         $emp = Employee::findOrFail($id);
         return view('pages.emp-show', compact('emp'));
     }
-/*
-    public function taskCreate() {
+
+    public function empCreate() {
 
         $emps = Employee::all();
-        $typs = Typology::all();
-        return view('pages.task-create', compact('emps', 'typs'));
+        return view('pages.emp-create', compact('emps'));
     }
-    public function taskStore(Request $request) {
+    public function empStore(Request $request) {
 
         $data = $request -> all();
 
         Validator::make($data, [
 
-            'title' => 'required|min:3|max:100',
-            'title' => 'alpha',
-            'desc' => 'required|min:4|max:200',
-            'priority' => 'required|integer|between:1,5',
-
+            'name' => 'required|alpha|min:3|max:100',
+            'lastname' => 'required|alpha|min:3|max:100',
+            'dateOfBirth' => 'required|date'
 
         ]) -> validate();
 
-
-        
-        $emp = Employee::findOrFail($data['employee_id']);
-        $task = Task::make($request -> all());
-        $task -> employee() -> associate($emp);
-        $task -> save();
-
-        if (array_key_exists('typs', $data)) {
-            $typs = Typology::findOrFail($data['typs']);
-            $task -> typologies() -> attach($typs);
-        } else {
-            $task -> typologies() -> detach();
-
-        }
-
-        
-        //$typs = Typology::findOrFail($data['typs']);
-        //$task -> typologies() -> attach($typs);
-        return redirect() -> route('task-show', $task -> id);
+        $emp = Employee::create($data);
+        return redirect() -> route('emp-show', $emp -> id);
     }
-*/
+
+
+    public function empEdit($id) {
+        $emp = Employee::findOrFail($id);
+        return view('pages.task-edit', compact('emp'));
+    }
+    public function empUpdate(Request $request, $id) {
+        $data = $request -> all();
+
+        Validator::make($data, [
+
+            'name' => 'required|alpha|min:3|max:100',
+            'lastname' => 'required|alpha|min:3|max:100',
+            'dateOfBirth' => 'required|date'
+
+        ]) -> validate();
+
+        $emp = Employee::findOrFail($id);
+        $emp -> update($data);
+
+        return redirect() -> route('emp-show', $emp -> id);
+    }
+
+
 
     //---------------------------------------------------   
 
@@ -94,8 +97,7 @@ class MainController extends Controller
 
         Validator::make($data, [
 
-            'title' => 'required|min:3|max:100',
-            'title' => 'alpha',
+            'title' => 'required|alpha|min:3|max:100',
             'desc' => 'required|min:4|max:200',
             'priority' => 'required|integer|between:1,5',
 
@@ -137,8 +139,7 @@ class MainController extends Controller
 
         Validator::make($data, [
 
-            'title' => 'required|min:3|max:100',
-            'title' => 'alpha',
+            'title' => 'required|alpha|min:3|max:100',
             'desc' => 'required|min:4|max:200',
             'priority' => 'required|integer|between:1,5',
 
@@ -202,8 +203,7 @@ class MainController extends Controller
 
         Validator::make($data, [
 
-            'name' => 'required|min:3|max:100',
-            'name' => 'alpha',
+            'name' => 'required|alpha|min:3|max:100',
             'desc' => 'required|min:4|max:200',
 
 
@@ -239,8 +239,7 @@ class MainController extends Controller
         $data = $request -> all();
         Validator::make($data, [
 
-            'name' => 'required|min:3|max:100',
-            'name' => 'alpha',
+            'name' => 'required|alpha|min:3|max:100',
             'desc' => 'required|min:4|max:200',
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Employee;
 use App\Task;
@@ -115,9 +116,29 @@ class MainController extends Controller
     public function typStore(Request $request) {
 
         $data = $request -> all();
+
+        Validator::make($data, [
+
+            'name' => 'required|min:3|max:50',
+            'name' => 'alpha',
+            'desc' => 'required|min:4|max:50',
+            'desc' => 'alpha_dash',
+
+
+        ]) -> validate();
+
         
         $typ = Typology::create($data);
-        $tasks = Task::findOrFail($data['tasks']);
+
+
+        if (array_key_exists('tasks', $data)) {
+
+            $tasks = Task::findOrFail($data['tasks']);
+        } else {
+            $tasks = [];
+        }
+
+
         $typ -> tasks() -> attach($tasks);
         
         return redirect() -> route('typ-show', $typ -> id);
@@ -132,18 +153,32 @@ class MainController extends Controller
         );
     }
     public function typUpdate(Request $request, $id) {
-        $data = $request -> all();
-        // dd($data);
 
+        $data = $request -> all();
+        Validator::make($data, [
+
+            'name' => 'required|min:3|max:50',
+            'name' => 'alpha',
+            'desc' => 'required|min:4|max:50',
+            'desc' => 'alpha_dash',
+
+
+        ]) -> validate();
+        
         $typ = Typology::findOrFail($id);
         $typ -> update($data);
-        //$typ -> save();
 
-        $tasks = Task::findOrFail($data['tasks']);
+        if (array_key_exists('tasks', $data)) {
+
+            $tasks = Task::findOrFail($data['tasks']);
+        } else {
+            $tasks = [];
+        }
+
         $typ -> tasks() -> sync($tasks);
 
         return redirect() -> route('typ-show', $typ -> id);
     }
 
-
+    
 }

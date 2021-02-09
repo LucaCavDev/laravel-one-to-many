@@ -23,7 +23,8 @@
 
                 Name of the employee in charge of this task
                 {{$task -> employee -> name}}
-                {{$task -> employee -> name}}
+                {{$task -> employee -> lastname}}
+                
 
 
                 

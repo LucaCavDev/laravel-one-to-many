@@ -9,7 +9,7 @@ $factory->define(Task::class, function (Faker $faker) {
     return [
         
         'title' => $faker -> unique() -> word,
-        'desc' => $faker -> sentence,
+        'desc' => $faker -> text,
         'priority' => rand(1, 5),
 
     ];

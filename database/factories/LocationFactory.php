@@ -9,7 +9,7 @@ $factory->define(Location::class, function (Faker $faker) {
     return [
 
         'name' => $faker -> unique() -> word,
-        'coords' => $faker -> word,
+        'coords' => $faker -> address,
 
 
     ];

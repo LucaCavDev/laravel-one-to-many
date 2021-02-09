@@ -18,7 +18,7 @@ class CreateLocationsTable extends Migration
             $table->id();
             
             $table->string('name', 100) -> unique();
-            $table->string('coords', 50);
+            $table->string('coords', 100);
 
 
             $table->timestamps();

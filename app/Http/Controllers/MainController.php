@@ -49,14 +49,35 @@ class MainController extends Controller
     public function taskStore(Request $request) {
 
         $data = $request -> all();
+
+        Validator::make($data, [
+
+            'title' => 'required|min:3|max:100',
+            'title' => 'alpha',
+            'desc' => 'required|min:4|max:200',
+            'priority' => 'required|integer',
+
+
+        ]) -> validate();
+
+
         
         $emp = Employee::findOrFail($data['employee_id']);
         $task = Task::make($request -> all());
         $task -> employee() -> associate($emp);
         $task -> save();
+
+        if (array_key_exists('typs', $data)) {
+            $typs = Typology::findOrFail($data['typs']);
+            $task -> typologies() -> attach($typs);
+        } else {
+            $task -> typologies() -> detach();
+
+        }
+
         
-        $typs = Typology::findOrFail($data['typs']);
-        $task -> typologies() -> attach($typs);
+        //$typs = Typology::findOrFail($data['typs']);
+        //$task -> typologies() -> attach($typs);
         return redirect() -> route('task-show', $task -> id);
     }
 
@@ -71,14 +92,34 @@ class MainController extends Controller
     }
     public function taskUpdate(Request $request, $id) {
         $data = $request -> all();
-        // dd($data);
+
+        Validator::make($data, [
+
+            'title' => 'required|min:3|max:100',
+            'title' => 'alpha',
+            'desc' => 'required|min:4|max:200',
+            'priority' => 'required|integer',
+
+
+        ]) -> validate();
+
         $emp = Employee::findOrFail($data['employee_id']);
+
         $task = Task::findOrFail($id);
         $task -> update($data);
+
         $task -> employee() -> associate($emp);
         $task -> save();
-        $typs = Typology::findOrFail($data['typs']);
-        $task -> typologies() -> sync($typs);
+
+        if (array_key_exists('typs', $data)) {
+            $typs = Typology::findOrFail($data['typs']);
+            $task -> typologies() -> sync($typs);
+        } else {
+            $task -> typologies() -> detach();
+
+        }
+
+
 
         return redirect() -> route('task-show', $task -> id);
     }
@@ -119,10 +160,9 @@ class MainController extends Controller
 
         Validator::make($data, [
 
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|min:3|max:100',
             'name' => 'alpha',
-            'desc' => 'required|min:4|max:50',
-            'desc' => 'alpha_dash',
+            'desc' => 'required|min:4|max:200',
 
 
         ]) -> validate();
@@ -157,10 +197,9 @@ class MainController extends Controller
         $data = $request -> all();
         Validator::make($data, [
 
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|min:3|max:100',
             'name' => 'alpha',
-            'desc' => 'required|min:4|max:50',
-            'desc' => 'alpha_dash',
+            'desc' => 'required|min:4|max:200',
 
 
         ]) -> validate();
